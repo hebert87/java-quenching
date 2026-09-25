@@ -1,3 +1,5 @@
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -48,7 +50,7 @@ public class Practice {
             if (shortWord == null){
                 shortWord = word;
             }
-             else if (shortWord.length() > word.length()){
+            else if (shortWord.length() > word.length()){
                 shortWord = word;
             }
             else if(shortWord.length() == word.length() && word.compareTo(shortWord)< 0){
@@ -68,7 +70,14 @@ public class Practice {
      * @throws NullPointerException if ages is null
      */
     public static Set<String> adults(Map<String, Integer> ages) {
-        return null;
+
+        Set<String> over18 = new HashSet<>();
+        for ( String name : ages.keySet()){
+            if (ages.get(name)>= 18){
+                over18.add(name);
+            }
+        }
+        return over18;
     }
 
     /**
@@ -79,7 +88,23 @@ public class Practice {
      * @throws IllegalArgumentException if head is null
      */
     public static int biggestNumber(ListNode<Integer> head) {
-        return 0;
+
+        if (head == null){
+            throw new IllegalArgumentException();
+        }
+        
+        int largestNum = head.data;
+
+        ListNode<Integer> current = head.next;
+
+        while (current != null){
+            if(current.data >largestNum){
+                largestNum = current.data;
+            }
+            current = current.next;
+
+        }
+        return largestNum;
     }
 
     /**
@@ -96,7 +121,25 @@ public class Practice {
      * @return a frequency map of values in the list
      */
     public static <T> Map<T, Integer> frequencies(ListNode<T> head) {
-        return null;
+
+        if (head == null){
+            return new HashMap<>();
+        }
+        ListNode<T> current = head;
+
+        Map<T, Integer> count = new HashMap<>();
+
+        while(current !=null){
+            if (!count.containsKey(current.data)){
+                count.put(current.data, 1);
+            }else{
+                count.put(current.data,count.get(current.data) +1);
+
+            }
+            current = current.next;
+
+        }
+        return count;
     }
 
 
